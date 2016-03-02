@@ -46,7 +46,7 @@ object Defaults {
   val PreAllocateEnable = kafka.server.Defaults.LogPreAllocateEnable
 }
 
-case class LogConfig(props: java.util.Map[_, _]) extends AbstractConfig(LogConfig.configDef, props, false) {
+case class LogConfig(props: java.util.Map[Object,Object]) extends AbstractConfig(LogConfig.configDef, props, false) {
   /**
     * Important note: Any configuration parameter that is passed along from KafkaConfig to LogConfig
     * should also go in copyKafkaConfigToLog.
@@ -161,7 +161,7 @@ object LogConfig extends TopicConfigs {
 
   def apply(): LogConfig = LogConfig(new Properties())
 
-  val configNames: Set[String] = {
+  val configNames: scala.collection.immutable.Set[String] = {
     import JavaConversions._
     configDef.names().toSet
   }
